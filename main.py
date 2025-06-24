@@ -3,7 +3,7 @@ import asignacion
 import envio
 
 st.set_page_config(page_title="Checkouts Likewise", layout="centered")
-st.title("🧠 Webhooks Likewise")
+st.title("Webhooks Likewise")
 
 # Opciones de cuenta
 cuenta = st.radio("Selecciona una cuenta:", ["Telefonica", "Entel", "Omnicanalidad", "Biobio"])
