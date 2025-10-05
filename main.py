@@ -35,23 +35,21 @@ if st.button("Procesar"):
             rutas = []
 
             if exclusion:
-                patron = r'\d+'
+                # Busca secuencias de EXACTAMENTE 8 dígitos
+                patron = r'\d{8}'
                 rutas = re.findall(patron, rutas_input)
             else:
+                # Busca el formato UUID
                 patron = r'[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}'
                 rutas = re.findall(patron, rutas_input)
 
             if not rutas:
                 st.warning("No se encontraron IDs con el formato esperado en el texto.")
             else:
-                # --- ESTA ES LA SECCIÓN MODIFICADA ---
                 if exclusion:
                     for r in rutas:
-                        # 1. Recibimos ambos valores: mensaje y nombre del color
                         mensaje, color_name = envio.ejecucionurlvisitas([int(r)], links[3])
-                        # 2. Simplificamos el nombre del color para Streamlit
                         color = "green" if "green" in color_name else "red"
-                        # 3. Usamos la sintaxis de color de Streamlit: :color[texto]
                         st.markdown(f"**Exclusión:** :{color}[{mensaje}]")
                 else:
                     if creacion:
